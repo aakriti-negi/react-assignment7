@@ -22,8 +22,6 @@ const AddorUpdate = () => {
   const users = useSelector((state) =>
     state.users.find((user) => user.id === id)
   )
-
-  // to show the existing data in input fields
   useEffect(() => {
     if (id === undefined) {
       setDetails({
@@ -34,7 +32,6 @@ const AddorUpdate = () => {
         id: "",
       })
     } else if (id === users.id) {
-      //checking for existing id and set details of it
       setDetails({
         name: users.name,
         age: users.age,
@@ -45,14 +42,13 @@ const AddorUpdate = () => {
   }, [users, id])
 
   const handleChange = (e) => {
-    setDetails({ ...details, [e.target.name]: e.target.value }) // update the details
+    setDetails({ ...details, [e.target.name]: e.target.value }) 
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     if (id === undefined) {
-      //check for new entries
       let newDetails = {
         ...details,
         id: Math.floor(Math.random() * 10000).toString(),
